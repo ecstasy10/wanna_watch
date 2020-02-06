@@ -1,6 +1,8 @@
-# wanna watch??
+# wanna watch?
 
-> A Vue.js project
+I started this project on _vanilla JS_, then I switched to _VUE.js_ to make it better, so I had to learn how to use it. I saw many tutorials & forums, probably the way i use it isn't the correct one, but I'm just a begginer.
+
+The Web App implements Ajax tech, Bootstrap deployed with Vue.
 
 ## Build Setup
 
