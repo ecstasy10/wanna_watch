@@ -10,6 +10,7 @@ The Web App implements Ajax tech, Bootstrap deployed with Vue.
 # install dependencies
 npm install
 npm install -g webpack-cli
+npm install -g @vue/cli
 
 # serve with hot reload at localhost:8080
 npm run dev
