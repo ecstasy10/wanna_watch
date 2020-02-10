@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #25262B;">
         <div class="container">
             <router-link class="navbar-brand" to="/">wanna watch?</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,9 @@
               </form>
             </div>
         </nav>
-    <router-view></router-view>
+        <div class="container">
+          <router-view></router-view>
+        </div>
   </div>
 </template>
 
