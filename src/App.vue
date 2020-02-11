@@ -17,9 +17,10 @@
               </ul>
             </div>
             <form class="form-inline">
-                <input ref="myInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <router-link class="btn btn-outline-success my-2 my-sm-0" to="/search">vamonos</router-link>
+                <input id="inputSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" @click="()=>{ $router.push('search') }">
+                    Search
+                  </button>
               </form>
             </div>
         </nav>

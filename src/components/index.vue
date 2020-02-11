@@ -4,32 +4,28 @@
       <div class="row">
         <div class="col">
           <h2 class="text-white pt-4"> Popular Movies </h2>
-          <div id="carouselExampleControls" class="carousel slide shadow-lg p-1 mb-0 bg-dark rounded" data-ride="carousel">
+          <div id="carouselMovie" class="carousel slide shadow-lg p-1 mb-0 bg-dark rounded" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://media.metrolatam.com/2019/12/20/template1-ea257706fb7bda31b41155ccfe7db231-600x400.jpg" class="d-block w-100" alt="">
+                <img v-bind:src="`https://image.tmdb.org/t/p/original` + firstMovieImg"
+                  class="d-block w-100" alt="">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5> nombre</h5>
+                  <h5 class="bg-light text-dark rounded p-1"> {{ firstMovie }} </h5>
                 </div>
               </div>
-              <div class="carousel-item">
-                <img src="https://media.metrolatam.com/2019/12/20/template1-ea257706fb7bda31b41155ccfe7db231-600x400.jpg" class="d-block w-100" alt="">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5> nombre</h5>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="https://media.metrolatam.com/2019/12/20/template1-ea257706fb7bda31b41155ccfe7db231-600x400.jpg" class="d-block w-100" alt="">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5> nombre</h5>
+              <div class="carousel-item" v-for="movie in movieList.slice(1)" :key="movie.id">
+                <img v-bind:src="`https://image.tmdb.org/t/p/original` + movie.backdrop_path"
+                  class="d-block w-100" alt="">
+                <div class="carousel-caption d-md-block">
+                  <h5 class="bg-light text-dark rounded p-1"> {{ movie.title }} </h5>
                 </div>
               </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselMovie" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#carouselMovie" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
@@ -37,23 +33,26 @@
         </div>
         <div class="col">
           <h2 class="text-white pt-4"> Popular Tv-Shows </h2>
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div id="carouselTv" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="" class="d-block w-100" alt="">
+                <img v-bind:src="`https://image.tmdb.org/t/p/original` + firstTvImg" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="bg-light text-dark rounded p-1"> {{ firstTv }} </h5>
+                </div>
               </div>
-              <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="">
+              <div class="carousel-item" v-for="tv in tvList.slice(1)" :key="tv.id">
+                <img v-bind:src="`https://image.tmdb.org/t/p/original` + tv.backdrop_path" class="d-block w-100" alt="">
+                <div class="carousel-caption d-md-block">
+                  <h5 class="bg-light text-dark rounded p-1"> {{ tv.name }} </h5>
+                </div>
               </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselTv" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#carouselTv" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
@@ -65,66 +64,57 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'index',
   data () {
     return {
-      movieName: 'hola'
+      movieName: 'hola',
+      movieList: [],
+      firstMovie: 'first',
+      firstMovieImg: 'img',
+      tvList: [],
+      firstTv: 'first',
+      firstTvImg: 'img'
     }
   },
-  methods: {
-    req: function (url) {
-      return new Promise(function (resolve, reject) {
-        const xhr = new XMLHttpRequest()
-        xhr.timeout = 2000
-        xhr.onreadystatechange = function (e) {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              resolve(xhr.response)
-            } else {
-              reject(xhr.status)
-            }
+  mounted () {
+    let linkMov = 'https://api.themoviedb.org/3/movie/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=1'
+    axios.get(linkMov)
+      .then(response => {
+        var aux = [...response.data.results]
+        for (let i = 0; i < aux.length; i++) {
+          // problema cuando es una persona
+          if (aux[i].overview !== undefined && aux[i].overview.length > 100) {
+            aux[i].overview = aux[i].overview.slice(0, 100) + ' ...'
+          }
+          if (aux[i].title !== undefined && aux[i].title.length > 20) {
+            aux[i].title = aux[i].title.slice(0, 20) + ' ...'
           }
         }
-        xhr.ontimeout = function () {
-          reject(new Error('timeout'))
+        this.firstMovie = aux[0].title
+        this.firstMovieImg = aux[0].backdrop_path
+        this.movieList = aux
+      })
+
+    let linkTv = 'https://api.themoviedb.org/3/tv/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=1'
+    axios.get(linkTv)
+      .then(response => {
+        var aux = [...response.data.results]
+        for (let i = 0; i < aux.length; i++) {
+          // problema cuando es una persona
+          if (aux[i].overview !== undefined && aux[i].overview.length > 100) {
+            aux[i].overview = aux[i].overview.slice(0, 100) + ' ...'
+          }
+          if (aux[i].name !== undefined && aux[i].name.length > 20) {
+            aux[i].name = aux[i].name.slice(0, 20) + ' ...'
+          }
         }
-        xhr.open('get', url, true)
-        xhr.send()
+        this.firstTv = aux[0].name
+        this.firstTvImg = aux[0].backdrop_path
+        this.tvList = aux
       })
-    }
-  },
-  carouselName: function () {
-    let link = 'https://api.themoviedb.org/3/movie/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=1'
-    const moviePromise = this.req(link)
-    moviePromise
-      .then(function printMovies (json) {
-        let movie = JSON.parse(json)
-        console.log(movie.results[0].title)
-        this.movieName = 'holis'
-        return this.movieName
-      })
-      .catch(new Error('Error in the Movies Carousel Promise'))
-    this.movieName = 'asdfas'
-    return (this.movieName)
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
