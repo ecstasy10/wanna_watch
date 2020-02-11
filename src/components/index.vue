@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" v-on:load="movieCarousel()">
+    <div class="container">
       <div class="row">
         <div class="col">
           <h2 class="text-white pt-4"> Popular Movies </h2>
@@ -81,6 +81,7 @@ export default {
   },
   mounted () {
     let linkMov = 'https://api.themoviedb.org/3/movie/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=1'
+    // let GENEROS!! = 'https://api.themoviedb.org/3/genre/movie/list?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US'
     axios.get(linkMov)
       .then(response => {
         var aux = [...response.data.results]

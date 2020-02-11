@@ -17,21 +17,34 @@
               </ul>
             </div>
             <form class="form-inline">
-                <input id="inputSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" @click="()=>{ $router.push('search') }">
+                <input id="inputSearch" v-model="inputSearch" @keydown.enter="searchText" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button id="buttonSearch" class="btn btn-outline-success my-2 my-sm-0" @click="searchText" v-if="inputSearch">
                     Search
                   </button>
               </form>
             </div>
         </nav>
         <div class="container">
-          <router-view></router-view>
+          <router-view ></router-view>
         </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      inputSearch: ''
+    }
+  },
+  methods: {
+    searchText: function () {
+      this.$root.$emit('search')
+      if (this.$router.history.current.path !== '/search') {
+        this.$router.push('/search')
+      }
+    }
+  }
 }
 </script>
