@@ -11,7 +11,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build-bundle": "vue-cli-service build --target lib --name myLib ./src/App.vue"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -19,6 +20,7 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
     "vue": "^2.5.2",
+    "vue-cli": "^2.9.6",
     "vue-router": "^3.0.1",
     "webpack-cli": "^3.3.10"
   },
