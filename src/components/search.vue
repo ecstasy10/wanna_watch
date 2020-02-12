@@ -24,10 +24,10 @@ export default {
       description: 'desc',
       fullList: []
     }
-  },/*
-  mounted (name) {
-    // var name = document.getElementById('inputSearch').value
-    console.log(name)
+  },
+  mounted () {
+    var name = document.getElementById('inputSearch').value
+    // console.log(name)
     // document.getElementById('inputSearch').onkeyup = (name = document.getElementById('inputSearch').value)
     let link = 'https://api.themoviedb.org/3/search/multi?api_key=e9d8b222a57983dac6baa7919533097e&language=en-EU&page=1&include_adult=false&query='
     axios.get('' + link + name)
@@ -50,36 +50,6 @@ export default {
         this.fullList = aux
       })
       .catch(new Error('Error de peticion'))
-  },*/
-  methods: {
-    alt: function () {
-      alert('si y qe')
-    },
-    search: function (name) {
-      console.log(name)
-    // document.getElementById('inputSearch').onkeyup = (name = document.getElementById('inputSearch').value)
-    let link = 'https://api.themoviedb.org/3/search/multi?api_key=e9d8b222a57983dac6baa7919533097e&language=en-EU&page=1&include_adult=false&query='
-    axios.get('' + link + name)
-      .then(response => {
-        var aux = [...response.data.results]
-        for (let i = 0; i < aux.length; i++) {
-          // problema cuando es una persona
-          if (aux[i].title === undefined) {
-            aux[i].title = aux[i].name
-          }
-          if (aux[i].overview !== undefined && aux[i].overview.length > 100) {
-            aux[i].overview = aux[i].overview.slice(0, 100) + ' ...'
-          }
-          if (aux[i].poster_path === undefined || aux[i].poster_path === null) {
-            aux[i]['poster_path'] = 'https://www.ilv.com.mx/static/images/product_image_not_found.gif'
-          } else {
-            aux[i].poster_path = 'https://image.tmdb.org/t/p/original' + aux[i].poster_path
-          }
-        }
-        this.fullList = aux
-      })
-      .catch(new Error('Error de peticion'))
-    }
   }
 }
 </script>

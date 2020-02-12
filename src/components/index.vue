@@ -77,19 +77,23 @@
         <div class="row">
         <div v-for="genre in genrePopular" :key="genre.id">
           <div class="col">
-            <div class="card mb-3" style="max-width: 500px;">
+            <div class="card mb-3" style="max-width: 32em; min-height: 21em;">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img v-bind:src="`https://image.tmdb.org/t/p/original` + genre.poster_path" class="card-img p-1" alt="image">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title"> {{ genre.title }} </h5>
-                    <p class="card-text"> {{ genre.overview }} </p>
-                    <p class="card-text"><small class="text-muted">
+                  <p class="card-text align-bottom p-1">
+                    <small class="text-muted">
                       Release date: {{ genre.release_date }} <br>
                       Votes: {{ genre.vote_count }}
-                    </small></p>
+                    </small>
+                  </p>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-header" style="max-height: 4em; overflow-y: auto;">
+                    <h5>{{ genre.title }}</h5> 
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text border rounded p-2" style="height: 14em; overflow-y: auto;"> {{ genre.overview }} </p>
                   </div>
                 </div>
               </div>
