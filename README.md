@@ -1,5 +1,5 @@
 # wanna watch?
-## deploy: https://wanna-watch-b79a0.web.app
+## deploy: https://wwatch.davidbdev.com
 
 Empecé este proyecto en Vanilla JS, cuando comprendí como funciona Ajax y las funciones asincronas decidí cambiar la forma de trabajo y empezar a usar VUE.js como framework de trabajo sobre el cual desarrollaría la aplicación, para finalmente desplegarla en Firebase. He usado Bootstrap para la interfaz HTML de la Web App.
 
