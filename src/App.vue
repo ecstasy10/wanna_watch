@@ -16,7 +16,7 @@
                 </li>
               </ul>
             </div>
-            <form class="form-inline" @submit="searchText">
+            <form class="form-inline" v-on:submit.prevent="searchT">
                 <input id="inputSearch" v-model="inputSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                   <button id="buttonSearch" class="btn btn-outline-success my-2 my-sm-0" v-show="inputSearch" type="submit">
                     Search
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import search from './components/search'
+
 export default {
   name: 'App',
   data () {
@@ -40,14 +42,21 @@ export default {
   },
   methods: {
     searchText: function () {
-      event.preventDefault()
       // this.$router.push('/search')
       // console.log('hola')
-      this.$root.$emit('search')
+      // this.$root.$emit('search')
+      // search.methods.search()
       if (this.$router.history.current.path !== '/search') {
         this.$router.push('/search')
       }
       // this.$root.$on('search', () => { this.$router.push('/search') })
+    },
+    searchT: function () {
+      // console.log(search)
+      if (this.$router.history.current.path !== '/search') {
+        this.$router.push('/search')
+      }
+      search.methods.search(document.getElementById('inputSearch').value)
     }
   }
 }
