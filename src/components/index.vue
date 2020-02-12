@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="container">
+      <!-- CAROUSELS -->
       <div class="row">
-        <div class="col">
+        <div class="col-sm-6">
           <h2 class="text-white pt-4"> Popular Movies </h2>
           <div id="carouselMovie" class="carousel slide shadow-lg p-1 mb-0 bg-dark rounded" data-ride="carousel">
             <div class="carousel-inner">
@@ -31,7 +32,7 @@
             </a>
           </div>
         </div>
-        <div class="col">
+        <div class="col-sm-6">
           <h2 class="text-white pt-4"> Popular Tv-Shows </h2>
           <div id="carouselTv" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -59,7 +60,44 @@
           </div>
         </div>
       </div>
+    </div>
+      <!-- CATEGORIES -->
+      <div class="container mt-4 pt-2 bg-white rounded-lg">
+        <h3 class="text-dark">Categories</h3>
+        <small class="text-muted">Media may belong to several categories</small>
+        <div class="row pt-3">
+            <div class="col mb-3" v-for="genre in genreList" :key="genre.id">
+              <button class="btn btn-outline-dark" @click="click(genre.id)">
+                {{ genre.name }}
+              </button>
+            </div>
+        </div>
       </div>
+      <div class="container mt-4" v-if="showGenre">
+        <div class="row">
+        <div v-for="genre in genrePopular" :key="genre.id">
+          <div class="col">
+            <div class="card mb-3" style="max-width: 500px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img v-bind:src="`https://image.tmdb.org/t/p/original` + genre.poster_path" class="card-img p-1" alt="image">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"> {{ genre.title }} </h5>
+                    <p class="card-text"> {{ genre.overview }} </p>
+                    <p class="card-text"><small class="text-muted">
+                      Release date: {{ genre.release_date }} <br>
+                      Votes: {{ genre.vote_count }}
+                    </small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -76,12 +114,14 @@ export default {
       firstMovieImg: 'img',
       tvList: [],
       firstTv: 'first',
-      firstTvImg: 'img'
+      firstTvImg: 'img',
+      genreList: [],
+      genrePopular: [],
+      showGenre: false
     }
   },
   mounted () {
     let linkMov = 'https://api.themoviedb.org/3/movie/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=1'
-    // let GENEROS!! = 'https://api.themoviedb.org/3/genre/movie/list?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US'
     axios.get(linkMov)
       .then(response => {
         var aux = [...response.data.results]
@@ -116,6 +156,46 @@ export default {
         this.firstTvImg = aux[0].backdrop_path
         this.tvList = aux
       })
+
+    let linkGenre = 'https://api.themoviedb.org/3/genre/movie/list?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US'
+    axios.get(linkGenre)
+      .then(response => {
+        var aux = [...response.data.genres]
+        this.genreList = aux
+      })
+  },
+  methods: {
+    click: function (id) {
+      var c = 0
+      this.genrePopular = []
+      var auxGenre = []
+      this.showGenre = false
+      for (let p = 1; p < 6; p++) {
+        let latest = 'https://api.themoviedb.org/3/movie/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=' + p
+        // console.log(latest)
+        axios.get(latest)
+          .then(response => {
+            console.log(response)
+            var aux = [...response.data.results]
+            for (let i = 0; i < aux.length; i++) {
+              for (let j = 0; j < aux[i].genre_ids.length; j++) {
+                if (aux[i].genre_ids[j] === id) {
+                  auxGenre[c] = aux[i]
+                  c++
+                }
+              }
+            }
+            console.log('Genre Populars:')
+            console.log(auxGenre)
+            if (p === 5) {
+              this.genrePopular = auxGenre
+              console.log('THIS Genre Populars:')
+              console.log(this.genrePopular)
+              this.showGenre = true
+            }
+          })
+      }
+    }
   }
 }
 </script>

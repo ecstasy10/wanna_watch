@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import HelloWorld from '@/components/HelloWorld'
+import Search from '@/components/Search'
 
-describe('HelloWorld.vue', () => {
+describe('Search.vue', () => {
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(HelloWorld)
+    const Constructor = Vue.extend(Search)
     const vm = new Constructor().$mount()
     expect(vm.$el.querySelector('.hello h1').textContent)
       .to.equal('Welcome to Your Vue.js App')

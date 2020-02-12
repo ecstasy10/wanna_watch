@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #25262B;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #25262B;">
         <div class="container">
-            <router-link class="navbar-brand" to="/">wanna watch?</router-link>
+            <a class="navbar-brand" href="index.html">wanna watch?</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -16,9 +16,9 @@
                 </li>
               </ul>
             </div>
-            <form class="form-inline">
-                <input id="inputSearch" v-model="inputSearch" @keydown.enter="searchText" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button id="buttonSearch" class="btn btn-outline-success my-2 my-sm-0" @click="searchText" v-if="inputSearch">
+            <form class="form-inline" @submit="searchText">
+                <input id="inputSearch" v-model="inputSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button id="buttonSearch" class="btn btn-outline-success my-2 my-sm-0" v-show="inputSearch" type="submit">
                     Search
                   </button>
               </form>
@@ -40,10 +40,14 @@ export default {
   },
   methods: {
     searchText: function () {
+      event.preventDefault()
+      // this.$router.push('/search')
+      // console.log('hola')
       this.$root.$emit('search')
       if (this.$router.history.current.path !== '/search') {
         this.$router.push('/search')
       }
+      // this.$root.$on('search', () => { this.$router.push('/search') })
     }
   }
 }
