@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card-header" style="max-height: 4em; overflow-y: auto;">
-                    <h5>{{ genre.title }}</h5> 
+                    <h5> {{ genre.title }} </h5>
                   </div>
                   <div class="card-body">
                     <p class="card-text border rounded p-2" style="height: 14em; overflow-y: auto;"> {{ genre.overview }} </p>
