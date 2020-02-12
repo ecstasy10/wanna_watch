@@ -179,7 +179,6 @@ export default {
         // console.log(latest)
         axios.get(latest)
           .then(response => {
-            console.log(response)
             var aux = [...response.data.results]
             for (let i = 0; i < aux.length; i++) {
               for (let j = 0; j < aux[i].genre_ids.length; j++) {
@@ -189,12 +188,8 @@ export default {
                 }
               }
             }
-            console.log('Genre Populars:')
-            console.log(auxGenre)
             if (p === 5) {
               this.genrePopular = auxGenre
-              console.log('THIS Genre Populars:')
-              console.log(this.genrePopular)
               this.showGenre = true
             }
           })
