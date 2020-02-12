@@ -1,4 +1,5 @@
 # wanna watch?
+## deploy: wanna-watch-b79a0.web.app
 
 Empecé este proyecto en Vanilla JS, cuando comprendí como funciona Ajax y las funciones asincronas decidí cambiar la forma de trabajo y empezar a usar VUE.js como framework de trabajo sobre el cual desarrollaría la aplicación, para finalmente desplegarla en Firebase. He usado Bootstrap para la interfaz HTML de la Web App.
 
@@ -35,6 +36,14 @@ Se ha utilizado bootstrap para el estilo de la Web App.
             └─── main.js
 
 Se ha creado una aplicación web con Webpack-cli & Vue-cli. Dentro de la carpeta src/ encontraremos todo el código referido a como funciona la aplicación. El archivo App.vue y main.js definiran la forma de trabajo de nuestra aplicación, dentro de router/ el archivo index.js especificará la ruta de los componentes en la carpeta components/. En esta carpeta se encuentra index.vue y search.vue que son los dos componentes que va a cargar nuestra aplicación dependiendo de lo que le pidamos.
+
+## Firebase :fire:
+
+Se utiliza firebase para soportar el hosting de nuestra aplicación, perminitiendonos desplegarlo sobre una URL propia.
+URLs proporcionadas por Firebase:
+  - https://wanna-watch-b79a0.web.app/#/
+  - https://wanna-watch-b79a0.firebaseapp.com/#/
+  
 
 ## Build Setup :hammer:
 
