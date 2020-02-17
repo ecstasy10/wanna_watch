@@ -67,7 +67,8 @@
         <small class="text-muted">Media may belong to several categories</small>
         <div class="row pt-3">
             <div class="col mb-3" v-for="genre in genreList" :key="genre.id">
-              <button class="btn btn-outline-dark" @click="click(genre.id)">
+              <button class="btn btn-outline-dark" @click="click(genre.id, genre.name)
+              ">
                 {{ genre.name }}
               </button>
             </div>
@@ -75,6 +76,8 @@
       </div>
       <!-- Mostrar generos -->
       <div class="container mt-4" v-if="showGenre">
+        <h5 class="text-muted">Popular in categories</h5>
+        <h3 class="text-success">{{ nameGender }}</h3>
         <div class="row">
         <div v-for="genre in pageOfItems" :key="genre.id">
           <div class="col">
@@ -90,7 +93,7 @@
                   </p>
                 </div>
                 <div class="col-md-8">
-                  <div class="card-header" style="max-height: 4em; overflow-y: auto;">
+                  <div class="card-header  text-center" style="max-height: 4em; overflow-y: auto;">
                     <h5> {{ genre.title }} </h5>
                   </div>
                   <div class="card-body">
@@ -126,7 +129,8 @@ export default {
       genreList: [],
       genrePopular: [],
       showGenre: false,
-      pageOfItems: []
+      pageOfItems: [],
+      nameGender: ''
     }
   },
   mounted () {
@@ -174,7 +178,7 @@ export default {
       })
   },
   methods: {
-    click: function (id) {
+    click: function (id, name) {
       var c = 0
       this.genrePopular = []
       var auxGenre = []
@@ -199,6 +203,7 @@ export default {
             }
           })
       }
+      this.nameGender = name
     },
     onChangePage (pageOfItems) {
       // update page of items

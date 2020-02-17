@@ -1,15 +1,18 @@
 <template>
-  <div class="row my-4">
-    <div v-for="search in fullList" :key="search.id">
-        <div class="card border border-0 shadow-lg p-2 m-4" style="width: 18rem;">
-          <img v-bind:src="search.poster_path" class="card-img-top border" alt="Photo">
-          <div class="card-body">
-            <h5 class="card-title"> {{ search.title }} </h5>
-            <p class="card-text"> {{ search.overview }} </p>
-            <a href="#" class="btn btn-primary">Show more</a>
+  <div>
+    <h3 class="text-success mt-3"> Sort by popularity </h3>
+    <div class="row">
+      <div v-for="search in fullList" :key="search.id">
+          <div class="card border border-0 shadow-lg p-2 m-4" style="width: 18rem;">
+            <img v-bind:src="search.poster_path" class="card-img-top border" alt="Photo">
+            <div class="card-body">
+              <h5 class="card-title"> {{ search.title }} </h5>
+              <p class="card-text"> {{ search.overview }} </p>
+              <a href="#" class="btn btn-primary">Show more</a>
+            </div>
           </div>
         </div>
-      </div>
+    </div>
   </div>
 </template>
 
