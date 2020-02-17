@@ -25,7 +25,8 @@ export default {
     return {
       title: 'titulo',
       description: 'desc',
-      fullList: []
+      fullList: [],
+      nResults: 0
     }
   },
   mounted () {

@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h2 class="text-white pt-4"> Popular Movies </h2>
-          <div id="carouselMovie" class="carousel slide shadow-lg p-1 mb-0 bg-dark rounded" data-ride="carousel">
+          <div id="carouselMovie" class="carousel slide shadow-lg pb-2 mb-0 bg-success rounded" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img v-bind:src="`https://image.tmdb.org/t/p/original` + firstMovieImg"
@@ -34,7 +34,7 @@
         </div>
         <div class="col-lg-6">
           <h2 class="text-white pt-4"> Popular Tv-Shows </h2>
-          <div id="carouselTv" class="carousel slide" data-ride="carousel">
+          <div id="carouselTv" class="carousel slide shadow-lg pb-2 mb-0 bg-success rounded" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img v-bind:src="`https://image.tmdb.org/t/p/original` + firstTvImg" class="d-block w-100" alt="">
@@ -67,8 +67,7 @@
         <small class="text-muted">Media may belong to several categories</small>
         <div class="row pt-3">
             <div class="col mb-3" v-for="genre in genreList" :key="genre.id">
-              <button class="btn btn-outline-dark" @click="click(genre.id, genre.name)
-              ">
+              <button class="btn btn-outline-dark" @click="click(genre.id, genre.name)">
                 {{ genre.name }}
               </button>
             </div>
@@ -77,7 +76,7 @@
       <!-- Mostrar generos -->
       <div class="container mt-4" v-if="showGenre">
         <h5 class="text-muted">Popular in categories</h5>
-        <h3 class="text-success">{{ nameGender }}</h3>
+        <h3 class="text-success">{{ nameGender }} -  {{ nResults }} results found</h3>
         <div class="row">
         <div v-for="genre in pageOfItems" :key="genre.id">
           <div class="col">
@@ -107,7 +106,7 @@
       </div>
     </div>
     <div class="m-5 text-center">
-      <jw-pagination :items="genrePopular" @changePage="onChangePage"></jw-pagination>
+      <jw-pagination :items="genrePopular" @changePage="onChangePage" style="user-select: none;"></jw-pagination>
     </div>
   </div>
 </template>
@@ -130,7 +129,8 @@ export default {
       genrePopular: [],
       showGenre: false,
       pageOfItems: [],
-      nameGender: ''
+      nameGender: '',
+      nResults: 0
     }
   },
   mounted () {
@@ -183,7 +183,7 @@ export default {
       this.genrePopular = []
       var auxGenre = []
       this.showGenre = false
-      for (let p = 1; p < 6; p++) {
+      for (let p = 1; p < 30; p++) {
         let latest = 'https://api.themoviedb.org/3/movie/popular?api_key=e9d8b222a57983dac6baa7919533097e&language=en-US&page=' + p
         // console.log(latest)
         axios.get(latest)
@@ -194,10 +194,11 @@ export default {
                 if (aux[i].genre_ids[j] === id) {
                   auxGenre[c] = aux[i]
                   c++
+                  this.nResults = c
                 }
               }
             }
-            if (p === 5) {
+            if (p === 29) {
               this.genrePopular = auxGenre
               this.showGenre = true
             }
