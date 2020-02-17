@@ -5,7 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import JwPagination from 'jw-vue-pagination'
 
+Vue.component('jw-pagination', JwPagination)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="mb-5">
     <div class="container">
       <!-- CAROUSELS -->
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-lg-6">
           <h2 class="text-white pt-4"> Popular Movies </h2>
           <div id="carouselMovie" class="carousel slide shadow-lg p-1 mb-0 bg-dark rounded" data-ride="carousel">
             <div class="carousel-inner">
@@ -32,7 +32,7 @@
             </a>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-lg-6">
           <h2 class="text-white pt-4"> Popular Tv-Shows </h2>
           <div id="carouselTv" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -73,9 +73,10 @@
             </div>
         </div>
       </div>
+      <!-- Mostrar generos -->
       <div class="container mt-4" v-if="showGenre">
         <div class="row">
-        <div v-for="genre in genrePopular" :key="genre.id">
+        <div v-for="genre in pageOfItems" :key="genre.id">
           <div class="col">
             <div class="card mb-3" style="max-width: 32em; min-height: 21em;">
               <div class="row no-gutters">
@@ -102,6 +103,9 @@
         </div>
       </div>
     </div>
+    <div class="m-5 text-center">
+      <jw-pagination :items="genrePopular" @changePage="onChangePage"></jw-pagination>
+    </div>
   </div>
 </template>
 
@@ -121,7 +125,8 @@ export default {
       firstTvImg: 'img',
       genreList: [],
       genrePopular: [],
-      showGenre: false
+      showGenre: false,
+      pageOfItems: []
     }
   },
   mounted () {
@@ -194,6 +199,10 @@ export default {
             }
           })
       }
+    },
+    onChangePage (pageOfItems) {
+      // update page of items
+      this.pageOfItems = pageOfItems
     }
   }
 }

@@ -42,14 +42,9 @@ export default {
   },
   methods: {
     searchText: function () {
-      // this.$router.push('/search')
-      // console.log('hola')
-      // this.$root.$emit('search')
-      // search.methods.search()
-      if (this.$router.history.current.path !== '/search') {
-        this.$router.push('/search')
-      }
-      // this.$root.$on('search', () => { this.$router.push('/search') })
+      // if (this.$router.history.current.path !== '/search') {
+      this.$router.push('/search')
+      // }
     },
     searchT: function () {
       // console.log(search)
