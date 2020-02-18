@@ -5,12 +5,12 @@ Empecé este proyecto en Vanilla JS, cuando comprendí como funciona Ajax y las 
 
 El proyecto consta de una página web que muestra las películas y series más populares de este mes, además se implementa la opción de busqueda mixta para películas o series de televisión, y el filtrado por categoría.
 
-El proyecto que realicé de inicio para saber como funciona Ajax esta en el siguiente repositorio: https://github.com/itsnotLonee/Moovie.git (el proyecto quedó a medias)
+_El proyecto que realicé de inicio para saber como funciona Ajax esta en el siguiente repositorio: https://github.com/itsnotLonee/Moovie.git (el proyecto quedó a medias)_
 
 #### Requisitos funcionales
   - Como analista querría implementar la funcionalidad de categorías usando la tecnología Ajax y el REST json-server desde un fichero json en github para que funcione de forma asíncrona. :white_check_mark:
   - Como usuario querría una galería de fotos de un banco de imágenes que me permita filtrar por categorías las imágenes para facilitar la búsqueda :white_check_mark:
-  - Como usuario querría que la galería de imágenes se mostrará por páginas, mostrando las páginas de imágenes, la página actual y permita avanzar hacia adelante y hacia atrás para que cargue más rápido :wrench:
+  - Como usuario querría que la galería de imágenes se mostrará por páginas, mostrando las páginas de imágenes, la página actual y permita avanzar hacia adelante y hacia atrás para que cargue más rápido :white_check_mark:
   - Como analista querría que las peticiones ajax se realizarán mediante promesas o asyn/await utilizando vainilla JavaScript sin frameworks para mejorar el rendimiento y claridad del código y no depender de librerías externas :small_blue_diamond:
 #### Requisitos técnicos
   - No puede utilizarse jquery, axios ni fectch, debe utilizarse Vainilla JavaScript :small_blue_diamond:
