@@ -106,7 +106,7 @@
       </div>
     </div>
     <div class="m-5 text-center">
-      <jw-pagination :items="genrePopular" @changePage="onChangePage" style="user-select: none;"></jw-pagination>
+      <jw-pagination :pageSize="4" :maxPages="5" :items="genrePopular" @changePage="onChangePage" style="user-select: none; text-align: center;"></jw-pagination>
     </div>
   </div>
 </template>
