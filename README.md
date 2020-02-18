@@ -1,11 +1,11 @@
 # wanna watch?
 ## deploy: https://wwatch.davidbdev.com
 
-Empecé este proyecto en Vanilla JS, cuando comprendí como funciona Ajax y las funciones asincronas decidí cambiar la forma de trabajo y empezar a usar VUE.js como framework de trabajo sobre el cual desarrollaría la aplicación, para finalmente desplegarla en Firebase. He usado Bootstrap para la interfaz HTML de la Web App.
+Empecé este proyecto en Vanilla JS, cuando comprendí como funciona Ajax y las funciones asincronas decidí cambiar la forma de trabajo y empezar a usar <b>VUE.js</b> como framework de trabajo sobre el cual desarrollaría la aplicación, para finalmente desplegarla en Firebase. He usado <b>Bootstrap</b> para la interfaz HTML de la Web App.
 
 El proyecto consta de una página web que muestra las películas y series más populares de este mes, además se implementa la opción de busqueda mixta para películas o series de televisión, y el filtrado por categoría.
 
-_El proyecto que realicé de inicio para saber como funciona Ajax esta en el siguiente repositorio: https://github.com/itsnotLonee/Moovie.git (el proyecto quedó a medias)_
+<b>_El proyecto que realicé de inicio para saber como funciona Ajax esta en el siguiente repositorio: https://github.com/itsnotLonee/Moovie.git (el proyecto quedó a medias)_</b>
 
 #### Requisitos funcionales
   - Como analista querría implementar la funcionalidad de categorías usando la tecnología Ajax y el REST json-server desde un fichero json en github para que funcione de forma asíncrona. :white_check_mark:
