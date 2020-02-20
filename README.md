@@ -88,6 +88,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-## BUGS / Fallos a resolver :squirrel:
-  - Fallo al buscar, solo deja buscar un elemento, para seguir buscando hay que cambiar la vista y volver a introducir texto.
