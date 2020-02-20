@@ -4,13 +4,15 @@
         <div class="container">
             <a class="navbar-brand text-success" href="index.html">wanna watch?</a>
             <form class="form-inline" v-on:submit.prevent="searchT">
-                <input id="inputSearch" v-model="inputSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button id="buttonSearch" class="btn btn-outline-success my-5 my-sm-0"
-                    v-show="inputSearch" type="submit">
+                <input id="inputSearch" v-model="inputSearch" class="form-control mr-sm-2"
+                  type="search" placeholder="Search" aria-label="Search">
+                  <router-link v-show="inputSearch" to="/search"
+                  id="buttonSearch" class="btn btn-outline-success my-5 my-sm-0">
                     Search
-                  </button>
+                  </router-link>
               </form>
             </div>
+            <!-- v-show="inputSearch" -->
         </nav>
         <div class="container">
           <router-view ></router-view>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import search from './components/search'
+// import search from './components/search'
 
 export default {
   name: 'App',
@@ -29,17 +31,12 @@ export default {
     }
   },
   methods: {
-    searchText: function () {
-      // if (this.$router.history.current.path !== '/search') {
-      this.$router.push('/search')
-      // }
-    },
     searchT: function () {
       // console.log(search)
-      if (this.$router.history.current.path !== '/search') {
+      if (this.$router.history.current.path !== '/search' && document.getElementById('inputSearch').value !== '') {
         this.$router.push('/search')
       }
-      search.methods.search(document.getElementById('inputSearch').value)
+      // search.methods.search(document.getElementById('inputSearch').value)
     }
   }
 }
